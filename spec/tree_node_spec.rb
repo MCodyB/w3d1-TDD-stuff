@@ -68,7 +68,8 @@ describe TreeNode do
 			root
 		end
 		it "returns node with 7" do
-			node.dfs(7).value.should == 7
+			node.dfs(7).v
+			alue.should == 7
 		end
 
 		it "returns node with value 5" do
