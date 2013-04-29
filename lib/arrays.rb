@@ -20,6 +20,17 @@ class Array
 		false
 	end
 
+	def my_transpose #fix it
+		transposed_arr = Array.new(self.size) {Array.new(self.size)}
+		self.size.times do |col|
+			col.size.times do |row|
+				transposed_arr[col] << self[row][col]
+			end
+		end
+		transposed_arr
+	end
+
+
 end
 
 class TowersOfHanoi
@@ -56,7 +67,10 @@ class TowersOfHanoi
 		render
 		p won? ? "You WON!!!!!!!!!!" : "Loser"
 	end
+
 end
+
+
 
 
 

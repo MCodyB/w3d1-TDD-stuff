@@ -41,6 +41,20 @@ describe Array do
 			[1,2,3,0].two_sum?.should == false
 		end
 	end
+
+	describe "#my_transpose" do
+		it "returns an empty array when given an empty array" do
+			[].my_transpose.should == []
+		end
+
+		it "transposes a square array" do
+	    [[0, 1, 2],[3, 4, 5],[6, 7, 8]].my_transpose.should == [[0, 3, 6],[1, 4, 7],[2, 5, 8]]
+		end
+
+
+
+
+	end
 end
 
 describe TowersOfHanoi do
@@ -115,3 +129,8 @@ describe TowersOfHanoi do
 		end
 	end
 end
+
+
+
+
+
