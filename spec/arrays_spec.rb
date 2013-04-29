@@ -42,3 +42,76 @@ describe Array do
 		end
 	end
 end
+
+describe TowersOfHanoi do
+  let(:towers) {TowersOfHanoi.new}
+
+	describe "stacks" do
+		it "contains 3 arrays" do
+		 towers.stacks.size.should == 3
+	 	end
+
+		it "first stack has 3 disks" do
+			towers.stacks[0].size.should == 3
+		end
+	end
+
+	describe "#moves" do
+		it "moves from one stack to the other" do
+			towers.move(0,2)
+			towers.stacks.should == [[3, 2], [], [1]]
+		end
+
+		it "cannot move bigger disk onto smaller disk" do
+			towers.move(0,2)
+			towers.stacks.should_not == [[3], [], [1, 2]]
+		end
+
+		it "can move small disk onto bigger disk" do
+			towers.move(0,2)
+			towers.move(2,0)
+			towers.stacks.should == [[3,2,1], [], []]
+		end
+	end
+
+	describe "#render" do
+		it "returns a string of stacks" do
+			towers.render.should == "[[3, 2, 1], [], []]"
+		end
+
+		it "renders after a move" do
+			towers.move(0,2)
+			towers.render.should == "[[3, 2], [], [1]]"
+		end
+	end
+
+	describe "#won?" do
+		it "returns false if first stack is empty but the size of others is not full" do
+			towers.stacks = [[], [1], [3,2]]
+			towers.should_not be_won
+		end
+
+		it "returns false if first stack full" do
+			towers.stacks = [[3,2,1], [], []]
+			towers.should_not be_won
+		end
+		it "returns true if second stack full" do
+			towers.stacks = [[], [3,2,1], []]
+			towers.should be_won
+		end
+		it "returns true if third stack full" do
+			towers.stacks = [[], [], [3,2,1]]
+			towers.should be_won
+		end
+	end
+
+	describe "#play" do
+		it "loop can be won" do
+			win_moves = [[0,2], [0,1], [2,1], [0,2], [1,0], [1,2], [0,2]]
+			towers.stub(:s_and_t).and_return(*win_moves)
+
+			towers.should_receive(:move).exactly(7).times.and_call_original
+			towers.play
+		end
+	end
+end
