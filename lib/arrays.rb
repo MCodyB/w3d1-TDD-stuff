@@ -71,6 +71,23 @@ class TowersOfHanoi
 end
 
 
+def stock_picker(array)
+	buy = 0
+	sell = 0
+	array.each_with_index do |el, i|
+		j = i + 1
+
+		while j < array.size do
+			if array[j] - array[i] > array[sell] - array[buy]
+				buy, sell = i, j
+			end
+			j += 1
+		end
+	end
+	sell > buy ? [buy, sell] : []
+end
+
+
 
 
 

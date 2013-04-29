@@ -131,6 +131,21 @@ describe TowersOfHanoi do
 end
 
 
+describe "#stock_picker" do
+	it "returns empty array if no profitable pair exists" do
+		stock_picker([5, 4, 3, 2, 1]).should == []
+	end
+
+	it "returns the days with the greatest difference in price" do
+		stock_picker([1, 2, 3, 4, 5]).should == [0, 4]
+	end
+
+	it "does not return a sell date that occurs before the buy date" do
+		stock_picker([5, 1, 2, 3 ,4]).should == [1, 4]
+	end
+
+end
+
 
 
 
