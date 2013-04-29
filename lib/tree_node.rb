@@ -29,6 +29,7 @@ class TreeNode
 		order += @children
 		until order.empty?
 			nxt_node = next_node(order)
+			#p nxt_node.value
 			if nxt_node.value != value
 	 			order += nxt_node.children
 			else
@@ -38,16 +39,24 @@ class TreeNode
 	end
 
 	def dfs(value)
+		if self.value == value
+			return self
+		else
+			result = nil
+			@children.each do |child|
+				result = child.dfs(value) if (child && result.nil?)
+			end
+		end
+		result
 	end
 end
 =begin
-a = TreeNode.new(7)
-b = TreeNode.new(5, a)
-c = TreeNode.new(9, a)
-d = TreeNode.new(2, b)
-e = TreeNode.new(6, b)
-f = TreeNode.new(8, c)
-g = TreeNode.new(10, c)
-
-a.bfs(7)
+root = TreeNode.new(7)
+root.add_child(TreeNode.new(5))
+root.add_child(TreeNode.new(9))
+root.children[0].add_child(TreeNode.new(2))
+root.children[0].add_child(TreeNode.new(6))
+root.children[1].add_child(TreeNode.new(8))
+root.children[1].add_child(TreeNode.new(10))
+root.dfs(7)
 =end
