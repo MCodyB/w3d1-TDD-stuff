@@ -3,6 +3,7 @@ require 'tree_node'
 
 
 describe TreeNode do
+# REV: Shouldn't it be subject(:node)? Same for the rest of the page.
 	let(:node) {TreeNode.new(7)}
 
 	describe "#initialize" do
@@ -20,7 +21,7 @@ describe TreeNode do
 	end
 
 	describe "#add_child" do
-
+	# REV: Shouldn't it also set the child node's parent?
 		it "adds child objects to parent's children array" do
 			node.add_child(TreeNode.new(5)).children.size == 1
 		end
@@ -29,7 +30,7 @@ describe TreeNode do
 			node.add_child(TreeNode.new(7)).children.size == 2
 		end
 	end
-
+# REV:  Might be a good case for before(:all)
 	describe "#bfs" do
 		let(:node) do
 			root = TreeNode.new(7)
@@ -55,7 +56,7 @@ describe TreeNode do
 		end
 
 	end
-
+# REV: Same with before(:all)
 	describe "#dfs" do
 		let(:node) do
 			root = TreeNode.new(7)
@@ -67,6 +68,8 @@ describe TreeNode do
 			root.children[1].add_child(TreeNode.new(10))
 			root
 		end
+	# REV: Typos! You'll have to have tests that test your
+	# REV: tests.
 		it "returns node with 7" do
 			node.dfs(7).v
 			alue.should == 7

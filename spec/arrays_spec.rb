@@ -1,6 +1,6 @@
 require 'rspec'
 require 'arrays'
-
+# REV:  tl;dr - looks good. Might want to raise an error in line 75.
 describe Array do
 	describe "#my_uniq" do
 		it "returns empty array if given empty array" do
@@ -50,10 +50,6 @@ describe Array do
 		it "transposes a square array" do
 	    [[0, 1, 2],[3, 4, 5],[6, 7, 8]].my_transpose.should == [[0, 3, 6],[1, 4, 7],[2, 5, 8]]
 		end
-
-
-
-
 	end
 end
 
@@ -76,6 +72,7 @@ describe TowersOfHanoi do
 			towers.stacks.should == [[3, 2], [], [1]]
 		end
 
+		# REV: This should probably raise some error.
 		it "cannot move bigger disk onto smaller disk" do
 			towers.move(0,2)
 			towers.stacks.should_not == [[3], [], [1, 2]]
@@ -123,7 +120,7 @@ describe TowersOfHanoi do
 		it "loop can be won" do
 			win_moves = [[0,2], [0,1], [2,1], [0,2], [1,0], [1,2], [0,2]]
 			towers.stub(:s_and_t).and_return(*win_moves)
-
+# REV: Fancy
 			towers.should_receive(:move).exactly(7).times.and_call_original
 			towers.play
 		end
