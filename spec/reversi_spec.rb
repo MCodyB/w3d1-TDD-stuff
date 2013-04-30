@@ -12,7 +12,18 @@ describe Board do
 		board.grid[rand(0..7)].size.should == 8
 	end
 
-	it "places"
+	it "places initial white piece" do
+		board.grid[3][3].should == :white
+	end
+	it "places second white piece" do
+		board.grid[4][4].should == :white
+	end
+	it "places initial black piece" do
+		board.grid[3][4].should == :black
+	end
+	it "places initial white piece" do
+		board.grid[4][3].should == :black
+	end
 end
 
 describe Piece do
