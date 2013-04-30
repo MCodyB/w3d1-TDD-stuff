@@ -1,4 +1,5 @@
 class TreeNode
+	#REV Looks good to me
 	attr_accessor :value, :children, :parent
 	def initialize(value)
 		@value = value
@@ -10,6 +11,8 @@ class TreeNode
 		node.parent = self
 	end
 
+	# REV Like the use of the splat. Faster and more humane
+	 #than iterating through and shoving the children down the line.
 	def bfs_iter(value, order=[])
 		return self if self.value == value
 		order.push(*@children)

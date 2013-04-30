@@ -39,6 +39,8 @@ class TowersOfHanoi
 		@stacks = [[3, 2, 1], [], []]
 	end
 
+	# REV These conditions might look a bit cleaner if they were on seperate lines. Or maybe 
+	# put them into a seperate valid_move? method and check validity before moving?
 	def move(start, target)
 		if !(@stacks[start].empty?) || @stacks[target].empty? || @stacks[start].last < @stacks[target].last
 			@stacks[target] << @stacks[start].pop
@@ -71,6 +73,9 @@ class TowersOfHanoi
 end
 
 
+# REV All looks good, but the each with index is a bit confusing, since you never
+# actually use the element (el). I think a simple i-loop and j-loop would look nicer, or maybe
+# just an each_index if you don't want to keep count. 
 def stock_picker(array)
 	buy = 0
 	sell = 0
